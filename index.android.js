@@ -12,14 +12,13 @@ import {
   View
 } from 'react-native';
 
-import { StackNavigator } from 'react-navigation';
-
-import Tasks from './src/components/tasks'
+import Login from './src/components/login';
+import Tasks from './src/components/tasks';
 
 export default class doIT extends Component {
   render() {
     return (
-      <Tasks />
+        <Tasks />
     );
   }
 }

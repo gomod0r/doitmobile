@@ -13,7 +13,8 @@ import {
     Button,
     Footer, FooterTab,
     Content,
-    Fab
+    Fab,
+    Card, CardItem
 } from 'native-base';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -41,7 +42,117 @@ export default class Tasks extends Component {
                         </Right>
                     </Header>
                 </View>
-                <Content>
+                <Content style={{ paddingHorizontal:5 }}>
+                    <Card>
+                        <CardItem>
+                            <Body style={{ flexDirection:'row', alignItems:'center' }}>
+                                <Text> Görevin ismi </Text>
+                            </Body>
+                            <Right>
+                                <Icon name='cancel' />
+                            </Right>
+                        </CardItem>
+                    </Card>
+                    <Card>
+                        <CardItem>
+                            <Body style={{ flexDirection:'row', alignItems:'center' }}>
+                                <Text> Görevin ismi </Text>
+                            </Body>
+                            <Right>
+                                <Icon name='cancel' />
+                            </Right>
+                        </CardItem>
+                    </Card>
+                    <Card>
+                        <CardItem>
+                            <Body style={{ flexDirection:'row', alignItems:'center' }}>
+                                <Text> Görevin ismi </Text>
+                            </Body>
+                            <Right>
+                                <Icon name='cancel' />
+                            </Right>
+                        </CardItem>
+                    </Card>
+                    <Card>
+                        <CardItem>
+                            <Body style={{ flexDirection:'row', alignItems:'center' }}>
+                                <Text> Görevin ismi </Text>
+                            </Body>
+                            <Right>
+                                <Icon name='cancel' />
+                            </Right>
+                        </CardItem>
+                    </Card>
+                    <Card>
+                        <CardItem>
+                            <Body style={{ flexDirection:'row', alignItems:'center' }}>
+                                <Text> Görevin ismi </Text>
+                            </Body>
+                            <Right>
+                                <Icon name='cancel' />
+                            </Right>
+                        </CardItem>
+                    </Card>
+                    <Card>
+                        <CardItem>
+                            <Body style={{ flexDirection:'row', alignItems:'center' }}>
+                                <Text> Görevin ismi </Text>
+                            </Body>
+                            <Right>
+                                <Icon name='cancel' />
+                            </Right>
+                        </CardItem>
+                    </Card>
+                    <Card>
+                        <CardItem>
+                            <Body style={{ flexDirection:'row', alignItems:'center' }}>
+                                <Text> Görevin ismi </Text>
+                            </Body>
+                            <Right>
+                                <Icon name='cancel' />
+                            </Right>
+                        </CardItem>
+                    </Card>
+                    <Card>
+                        <CardItem>
+                            <Body style={{ flexDirection:'row', alignItems:'center' }}>
+                                <Text> Görevin ismi </Text>
+                            </Body>
+                            <Right>
+                                <Icon name='cancel' />
+                            </Right>
+                        </CardItem>
+                    </Card>
+                    <Card>
+                        <CardItem>
+                            <Body style={{ flexDirection:'row', alignItems:'center' }}>
+                                <Text> Görevin ismi </Text>
+                            </Body>
+                            <Right>
+                                <Icon name='cancel' />
+                            </Right>
+                        </CardItem>
+                    </Card>
+                    <Card>
+                        <CardItem>
+                            <Body style={{ flexDirection:'row', alignItems:'center' }}>
+                                <Text> Görevin ismi </Text>
+                            </Body>
+                            <Right>
+                                <Icon name='cancel' />
+                            </Right>
+                        </CardItem>
+                    </Card>
+                    <Card>
+                        <CardItem>
+                            <Body style={{ flexDirection:'row', alignItems:'center' }}>
+                                <Text> Görevin ismi </Text>
+                            </Body>
+                            <Right>
+                                <Icon name='cancel' />
+                            </Right>
+                        </CardItem>
+                    </Card>
                 </Content>
                 <View>
                     <Fab
