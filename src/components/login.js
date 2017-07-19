@@ -23,9 +23,11 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { StackNavigator } from 'react-navigation';
-
 export default class Login extends Component{
+
+    handleTasksPress = () => {
+        this.props.navigation.navigate('Tasks');
+    };
 
     render(){
         return(
@@ -65,7 +67,7 @@ export default class Login extends Component{
     						</Button>
 
                             <Button
-                                onPress={() => navigate('Tasks')}
+                                onPress={this.handleTasksPress}
     							style={{ backgroundColor:'blue', borderRadius: 3, marginTop: 24 }}>
     							<Text style={{ color:'white', fontWeight: '600', fontSize: 15, }}>Giriş Yap</Text>
     					 	</Button>
