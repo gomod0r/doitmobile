@@ -46,7 +46,7 @@ export default class Login extends Component{
 			await AsyncStorage.setItem(ACCESS_TOKEN, accessToken);
 			this.getToken();
 		} catch (error) {
-			console.log("something went wrong")
+			console.log("something went wrong store token")
 		}
 	}
 
@@ -55,7 +55,7 @@ export default class Login extends Component{
 			let token = await AsyncStorage.getItem(ACCESS_TOKEN);
 			console.log("token is: " + token);
 		} catch (error) {
-			console.log("something went wrong")
+			console.log("something went wrong gettoken")
 		}
 	}
 
@@ -64,7 +64,7 @@ export default class Login extends Component{
 			await AsyncStorage.removeItem(ACCESS_TOKEN);
 			this.getToken();
 		} catch (error) {
-			console.log("something went wrong")
+			console.log("something went wrong remove token")
 		}
 	}
 
@@ -78,7 +78,7 @@ export default class Login extends Component{
 				},
 				body: JSON.stringify({
 					  email: this.state.email,
-						password: this.state.password,
+			          password: this.state.password,
 				})
 			});
 			let res = await response.text();
@@ -87,7 +87,7 @@ export default class Login extends Component{
 				let accessToken = res;
 				this.storeToken(accessToken);
 				console.log("res token: " + accessToken);
-				this.redirect('Tasks');
+				this.redirect('Tasks', accessToken);
 			}
 			else {
 				let error = res;

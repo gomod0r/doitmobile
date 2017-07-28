@@ -10,5 +10,8 @@ export const LoginStack = StackNavigator({
     },
     Tasks:{
         screen: Tasks
-    },
+    }
+},
+{
+    headerMode: 'none'
 })
