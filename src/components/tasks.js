@@ -28,6 +28,10 @@ var taskArray = [];
 
 export default class Tasks extends Component {
 
+    redirect(routeName){
+        this.props.navigation.navigate(routeName);
+    }
+
     constructor(props){
         super(props);
         var dataSource = new ListView.DataSource({rowHasChanged:(r1,r2) => r1 != r2});
@@ -39,7 +43,7 @@ export default class Tasks extends Component {
 
     componentDidMount(){
         this.getTheData((json)=>{
-            console.log("json burda" , json);
+                console.log("json burda" , json);
             taskArray = json;
             this.setState({
                 datasource:this.state.dataSource.cloneWithRows(taskArray),
@@ -85,19 +89,32 @@ export default class Tasks extends Component {
         return(
             <View style={{ backgroundColor:'white', flex:1 }}>
                 <View>
-                    <Header noShadow style={{ backgroundColor:'white', borderBottomColor:'blue', borderBottomWidth:1, alignItems:'stretch' }}>
+                    <Header noShadow style={{ backgroundColor:'white',
+                                              borderBottomColor:'blue',
+                                              borderBottomWidth:1,
+                                              alignItems:'stretch' }}>
                         <StatusBar backgroundColor='blue' />
                         <Left>
-                            <TouchableHighlight style={{ backgroundColor:'white' }}>
-                                <MaterialCommunityIcons name='bell-ring-outline' style={{ color:'blue', fontSize:15 }} />
+                            <TouchableHighlight
+                                style={{ backgroundColor:'white' }}>
+                                <MaterialCommunityIcons name='bell-ring-outline'
+                                                        style={{ color:'blue',
+                                                            fontSize:15 }} />
                             </TouchableHighlight>
                         </Left>
-                        <Body style={{ alignItems:'center', justifyContent:'center' }}>
-                            <Text style={{ color:'blue',fontSize:15 ,fontWeight:'bold' }}> GÖREVLER </Text>
+                        <Body style={{ alignItems:'center',
+                                       justifyContent:'center' }}>
+                            <Text style={{ color:'blue',fontSize:15 ,
+                                           fontWeight:'bold' }}>
+                                GÖREVLER
+                            </Text>
                         </Body>
                         <Right>
-                            <TouchableHighlight style={{ backgroundColor:'white' }}>
-                                <Icon name='more-vert' style={{ color:'blue', fontSize:15, fontWeight:'bold' }} />
+                            <TouchableHighlight
+                                style={{ backgroundColor:'white' }}>
+                                <Icon name='more-vert'
+                                      style={{ color:'blue', fontSize:15,
+                                               fontWeight:'bold' }} />
                             </TouchableHighlight>
                         </Right>
                     </Header>
@@ -114,23 +131,36 @@ export default class Tasks extends Component {
                     <Fab
                         style={{ backgroundColor: 'blue' }}
                         position="bottomRight"
+                        onPress={ this.redirect('Add') }
                     >
                         <MaterialCommunityIcons name='plus' />
                     </Fab>
                 </View>
                 <Footer style={{ height:49 }}>
-                    <FooterTab style={{ backgroundColor:'white', borderTopColor:'blue', borderTopWidth:1 }}>
+                    <FooterTab style={{ backgroundColor:'white',
+                                        borderTopColor:'blue',
+                                        borderTopWidth:1 }}>
                         <Button>
-                            <MaterialCommunityIcons name='bookmark-outline' style={{ fontSize:26, color:'blue' }}/>
-                            <Text style={{ fontSize:10, color:'blue' }}>Görevler</Text>
+                            <MaterialCommunityIcons name='bookmark-outline'
+                                                    style={{ fontSize:26,
+                                                             color:'blue' }}/>
+                            <Text style={{ fontSize:10, color:'blue' }}>
+                                Görevler
+                            </Text>
                         </Button>
                         <Button>
-                            <MaterialCommunityIcons name='calendar' style={{ fontSize:26 }}/>
-                            <Text style={{ fontSize:10 }}>Takvim</Text>
+                            <MaterialCommunityIcons name='calendar'
+                                                    style={{ fontSize:26 }}/>
+                            <Text style={{ fontSize:10 }}>
+                                Takvim
+                            </Text>
                         </Button>
                         <Button>
-                            <MaterialCommunityIcons name='settings' style={{ fontSize:26 }}/>
-                            <Text style={{ fontSize:10 }}>Ayarlar</Text>
+                            <MaterialCommunityIcons name='settings'
+                                                    style={{ fontSize:26 }}/>
+                            <Text style={{ fontSize:10 }}>
+                                Ayarlar
+                            </Text>
                         </Button>
                     </FooterTab>
                 </Footer>
