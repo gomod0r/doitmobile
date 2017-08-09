@@ -21,7 +21,7 @@ import {
     Card, CardItem
 } from 'native-base';
 
-import api from '../config/api'
+import Api from '../config/api'
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -40,21 +40,19 @@ export default class Tasks extends Component {
     }
 
     componentDidMount(){
-        this.getTheData((json)=>{
-                console.log("json burda" , json);
-            taskArray = json;
+        this.getTheData((tasks)=>{
             this.setState({
-                dataSource:this.state.dataSource.cloneWithRows(taskArray),
-                isLoading:false
+                dataSource: this.state.dataSource.cloneWithRows(tasks),
+                isLoading: false
             });
-            console.log("array", taskArray);
         });
     }
 
     getTheData(callback) {
-        api.getTasks()
-            .then(json => callback(json))
-            .catch(error => console.log(error));
+        var url = "http://doit.unicrow.com/api/v1/tasks/";
+        Api.request(url, {
+            method: 'GET'
+        }).then(callback);
     }
 
     _renderRow(row) {

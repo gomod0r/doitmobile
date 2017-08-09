@@ -26,8 +26,6 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import Api from '../config/api'
 
-const ACCESS_TOKEN = 'auth_token';
-
 export default class Login extends Component{
 
     redirect(routeName, accessToken){
@@ -37,30 +35,11 @@ export default class Login extends Component{
     constructor(){
         super();
 
-        this.state = {
-    		email: "",
-    		password: "",
-    		error: "",
-            token:""
-        }
-	}
-
-	async storeToken(accessToken){
-		try {
-			await AsyncStorage.setItem(ACCESS_TOKEN, accessToken);
-			Api.getToken(ACCESS_TOKEN);
-		} catch (error) {
-			console.log("something went wrong store token")
-		}
-	}
-
-	async removeToken(){
-		try {
-			await AsyncStorage.removeItem(ACCESS_TOKEN);
-			Api.getToken(ACCESS_TOKEN);
-		} catch (error) {
-			console.log("something went wrong remove token")
-		}
+        this.state={
+    		email: "hakan@unicrow.com",
+    		password: "145300hakan",
+    		error: ""
+        };
 	}
 
 	async onLoginPressed(){
@@ -76,21 +55,17 @@ export default class Login extends Component{
 			          password: this.state.password,
 				})
 			});
-			let res = await response.text();
 			if(response.status >= 200 && response.status < 300) {
-				this.setState({ error: "" });
-				let accessToken = res;
-				this.storeToken(accessToken);
-				console.log("res token: " + accessToken);
-                this.setState({ token: accessToken })
+                let res = await response.json();
+				let accessToken = res.auth_token;
+				Api.storeToken(accessToken);
 				this.redirect('Tasks');
-			}
-			else {
+			} else {
 				let error = res;
 				throw error;
 			}
-		}catch(error){
-			this.removeToken();
+		} catch(error) {
+			Api.removeToken();
 			this.setState({ error: error });
 			console.log("error" + error);
 		}

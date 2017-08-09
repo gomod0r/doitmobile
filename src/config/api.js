@@ -1,26 +1,52 @@
 import { AsyncStorage } from 'react-native';
 
-var api = {
+const ACCESS_TOKEN = 'auth_token';
 
-    async getToken(accessToken){
-        try {
-            let token = await AsyncStorage.getItem(accessToken);
-            console.log("getToken: " + JSON.parse(token).auth_token);
-        } catch (error) {
-            console.log("something went wrong gettoken")
-        }
-    },
-
-    getTasks(){
-        var url = "http://doit.unicrow.com/api/v1/tasks/";
-        return fetch(url, {
-			method: 'GET',
-			headers: {
-				'Authorization':
-                            'Token 48e2d3d4a8ade5cee7d12b9d442eef9657dc062b'
-			}
-        }).then(response => response.json())
+export default class Api {
+    constructor() {
     }
-}
 
-module.exports = api;
+     static errorHandler(error) {
+        console.log("something went wrong store token");
+        throw error;
+    }
+
+    static async storeToken(accessToken){
+        try {
+            await AsyncStorage.setItem(ACCESS_TOKEN, accessToken);
+            return true;
+        } catch (error) {
+            this.errorHandler(error);
+        }
+    };
+
+    static async removeToken(){
+        try {
+            await AsyncStorage.removeItem(ACCESS_TOKEN);
+            return true;
+        } catch (error) {
+            this.errorHandler(error);
+        }
+    }
+
+    static async getToken(){
+        try {
+            let token = await AsyncStorage.getItem(ACCESS_TOKEN);
+            return token;
+        } catch (error) {
+            this.errorHandler(error);
+        }
+    }
+
+    static async getHeaders(){
+        let token = await this.getToken();
+        return { 'Authorization': `Token ${token}` }
+    }
+
+    static async request(url , options){
+        options.headers = await this.getHeaders();
+        return fetch(url, options)
+        .then(response => response.json())
+    }
+
+}
