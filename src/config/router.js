@@ -1,16 +1,15 @@
 import React from 'react';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, DrawerNavigator } from 'react-navigation';
 
 import Tasks from '../components/tasks';
 import Login from '../components/login';
 import Add from '../components/add';
+import Register from '../components/register';
+import Task from '../components/task';
 
 export const LoginStack = StackNavigator({
-    Add:{
-        screen: Add
-    },
-    Login:{
-        screen: Login
+    Task:{
+        screen: Task
     },
     Tasks:{
         screen: Tasks

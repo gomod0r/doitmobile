@@ -5,7 +5,8 @@ import {
     Text,
     Platform,
     StatusBar,
-    TouchableHighlight
+    TouchableHighlight,
+    AsyncStorage
 } from 'react-native';
 
 import {
@@ -23,11 +24,13 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import Api from '../config/api'
+
 const ACCESS_TOKEN = 'auth_token';
 
 export default class Login extends Component{
 
-    redirect(routeName){
+    redirect(routeName, accessToken){
         this.props.navigation.navigate(routeName);
     }
 
@@ -37,32 +40,24 @@ export default class Login extends Component{
         this.state = {
     		email: "",
     		password: "",
-    		error: ""
+    		error: "",
+            token:""
         }
 	}
 
 	async storeToken(accessToken){
 		try {
 			await AsyncStorage.setItem(ACCESS_TOKEN, accessToken);
-			this.getToken();
+			Api.getToken(ACCESS_TOKEN);
 		} catch (error) {
 			console.log("something went wrong store token")
-		}
-	}
-
-	async getToken(){
-		try {
-			let token = await AsyncStorage.getItem(ACCESS_TOKEN);
-			console.log("token is: " + token);
-		} catch (error) {
-			console.log("something went wrong gettoken")
 		}
 	}
 
 	async removeToken(){
 		try {
 			await AsyncStorage.removeItem(ACCESS_TOKEN);
-			this.getToken();
+			Api.getToken(ACCESS_TOKEN);
 		} catch (error) {
 			console.log("something went wrong remove token")
 		}
@@ -87,7 +82,8 @@ export default class Login extends Component{
 				let accessToken = res;
 				this.storeToken(accessToken);
 				console.log("res token: " + accessToken);
-				this.redirect('Tasks', accessToken);
+                this.setState({ token: accessToken })
+				this.redirect('Tasks');
 			}
 			else {
 				let error = res;
@@ -101,75 +97,44 @@ export default class Login extends Component{
 	}
     render(){
         return(
-            <View style={{ backgroundColor:'white', flex:1 }}>
-                <Header noShadow
-                        style={{ paddingLeft:(Platform.OS === 'android') ? 0 : 16,
-                                 backgroundColor:'transparent',
-                                 borderBottomColor:'transparent',
-                              }}>
-                    <Left></Left>
-                    <Body>
-                        <Title style={{ fontSize:12, fontWeight:'bold',
-                                        color:'blue' }} >
-                            GİRİŞ YAP
-                        </Title>
-                    </Body>
-                    <Right></Right>
-                </Header>
-                <View style={{ backgroundColor:'white', flex:1 }}>
-                    <Text style={{ paddingLeft:20,paddingTop:50, fontSize:11,
-                                   fontWeight:'bold', color:'blue',
-                                   backgroundColor:'transparent',
-                                   marginBottom:8 }}>
-                        Hoşgeldiniz!
-                    </Text>
-                    <Text style={{ paddingLeft:20,paddingTop:25, fontSize:26,
-                                   lineHeight:31, fontWeight:'300',
-                                   backgroundColor:'transparent',
-                                   color:'blue' }}>
-                        Lütfen Giriş Yapınız
-                    </Text>
-                    <Form style={{ paddingHorizontal:25 }}>
-                        <Item floatingLabel
-                              style={{marginLeft: 0, borderWidth:.5}}>
-							<Label style={{ color:'#999' }}>
-                                Kullanıcı Adı veya E-Posta
-                            </Label>
-							<Input onChangeText={ (text) =>
+
+            <View style={{ backgroundColor:'white', flex:1, alignItems:'center' }}>
+                <StatusBar backgroundColor='#7200da' />
+                <View>
+                    <Text style={{ fontFamily:'SFProDisplay', paddingTop:50, fontSize:72, fontWeight:'900', color:'#fb684b' }}> doit </Text>
+                </View>
+                <View>
+                    <Form style={{ marginTop:84 }}>
+
+                        <Item floatingLabel style={{marginLeft: 0, borderWidth:.5, width:311, paddingHorizontal:32, borderColor:'#7200da'}}>
+                            <Label style={{ color:'#9b9b9b', alignSelf:'center', fontSize:16 }}>E-Posta Adresi</Label>
+                            <Input onChangeText={ (text) =>
                                             this.setState({ email: text }) }
-								   keyboardType={'email-address'}/>
-						</Item>
+                                   keyboardType={'email-address'}/>
+                        </Item>
 
-						<Item floatingLabel
-                              style={{marginLeft: 0, borderWidth:.5,
-                                      marginTop: 12}}>
-							<Label style={{ color:'#999' }}>Şifre</Label>
-							<Input onChangeText={ (text) =>
+                        <Item floatingLabel style={{marginLeft: 0, borderWidth:.5, marginTop: 12,  borderColor:'#7200da'}}>
+                            <Label style={{ color:'#9b9b9b', alignSelf:'center', fontSize:16 }}>Şifre</Label>
+                            <Input onChangeText={ (text) =>
                                             this.setState({ password: text }) }
-							       secureTextEntry={true}/>
-						</Item>
+                                   secureTextEntry={true}/>
+                        </Item>
 
 
-						<Button transparent
-                                style={{ paddingHorizontal: 0,
-                                         alignSelf: 'flex-end',
-                                         marginTop: 16 }}>
-							<Text
-								style={{ color:'blue' }}>
-								Şifreni mi Unuttun?
-							</Text>
-						</Button>
-
-                        <Button
-                            onPress={ this.onLoginPressed.bind(this) }
-              				style={{ backgroundColor:'blue', borderRadius: 3,
-                                     marginTop: 24 }}>
-            				<Text style={{ color:'white', fontWeight: '600',
-                                           fontSize: 15 }}>
-                                Giriş Yap
+                        <Button transparent style={{ paddingHorizontal: 0, alignSelf: 'flex-end', marginTop: 10 }}>
+                            <Text
+                                style={{ color:'#9b9b9b', fontSize:13 }}>
+                                Şifremi unuttum
                             </Text>
-            			</Button>
-    				</Form>
+                        </Button>
+                        <Button
+                            full
+                            onPress={ this.onLoginPressed.bind(this) }
+                            style={{ backgroundColor:'white', borderRadius: 25, marginTop: 160, borderColor:'#7200da', borderWidth:1 }}>
+                            <Text style={{ color:'#7200da', fontWeight: '600', fontSize: 15, }}>Giriş Yap</Text>
+                        </Button>
+
+                    </Form>
                 </View>
             </View>
         );

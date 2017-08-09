@@ -21,6 +21,8 @@ import {
     Card, CardItem
 } from 'native-base';
 
+import api from '../config/api'
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -28,16 +30,12 @@ var taskArray = [];
 
 export default class Tasks extends Component {
 
-    redirect(routeName){
-        this.props.navigation.navigate(routeName);
-    }
-
     constructor(props){
         super(props);
         var dataSource = new ListView.DataSource({rowHasChanged:(r1,r2) => r1 != r2});
         this.state = {
             dataSource: dataSource.cloneWithRows(taskArray),
-            isLoading: true
+            isLoading: true,
         }
     }
 
@@ -46,28 +44,17 @@ export default class Tasks extends Component {
                 console.log("json burda" , json);
             taskArray = json;
             this.setState({
-                datasource:this.state.dataSource.cloneWithRows(taskArray),
+                dataSource:this.state.dataSource.cloneWithRows(taskArray),
                 isLoading:false
             });
             console.log("array", taskArray);
-            console.log("data", this.state.dataSource)
         });
     }
 
     getTheData(callback) {
-        var url = "http://doit.unicrow.com/api/v1/tasks/";
-        fetch(url, {
-			method: 'GET',
-			headers: {
-				'Authorization': 'Token 1519b244b7a86e71d7a09971ef32e75cfa987ad6',
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-			}
-        })
-            .then(response => response.json())
+        api.getTasks()
             .then(json => callback(json))
             .catch(error => console.log(error));
-            console.log('burda mısın?');
     }
 
     _renderRow(row) {
@@ -131,7 +118,6 @@ export default class Tasks extends Component {
                     <Fab
                         style={{ backgroundColor: 'blue' }}
                         position="bottomRight"
-                        onPress={ this.redirect('Add') }
                     >
                         <MaterialCommunityIcons name='plus' />
                     </Fab>
