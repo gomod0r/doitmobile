@@ -8,8 +8,8 @@ import Register from '../components/register';
 import Task from '../components/task';
 
 export const LoginStack = StackNavigator({
-    Task:{
-        screen: Task
+    Login:{
+        screen: Login
     },
     Tasks:{
         screen: Tasks
