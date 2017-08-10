@@ -36,8 +36,8 @@ export default class Login extends Component{
         super();
 
         this.state={
-    		email: "hakan@unicrow.com",
-    		password: "145300hakan",
+    		email: "",
+    		password: "",
     		error: ""
         };
 	}
@@ -59,7 +59,7 @@ export default class Login extends Component{
                 let res = await response.json();
 				let accessToken = res.auth_token;
 				Api.storeToken(accessToken);
-				this.redirect('Tasks');
+				this.redirect('Task');
 			} else {
 				let error = res;
 				throw error;

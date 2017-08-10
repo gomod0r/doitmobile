@@ -32,29 +32,19 @@ export default class Card extends Component {
 										numberOfLines={1}>
 										{this.props.primaryText}
 									</Text>
-									<Text
-										style={css.secondaryText}>
-										{this.props.secondaryText}
-									</Text>
 								</Col>
 								<View style={[css.actionButtonWrap]}>
-									<Col>
-										<Row>
-											<TouchableWithoutFeedback hitSlop={{ top:20 }}>
-												<MaterialCommunityIcons name="pencil" style={css.actionButtonPen}/>
-											</TouchableWithoutFeedback>
-											<TouchableWithoutFeedback hitSlop={{ top:20 }}>
-												<MaterialCommunityIcons name="delete" style={css.actionButtonDel}/>
-											</TouchableWithoutFeedback>
-										</Row>
-										<Row>
-											<TouchableWithoutFeedback>
-												<MaterialIcon name="more-horiz" style={css.actionButtonDel}/>
-											</TouchableWithoutFeedback>
-										</Row>
-									</Col>
+									<TouchableWithoutFeedback hitSlop={{ top:20 }}>
+										<MaterialCommunityIcons name="pencil" style={css.actionButtonPen}/>
+									</TouchableWithoutFeedback>
+									<TouchableWithoutFeedback hitSlop={{ top:20 }}>
+										<MaterialCommunityIcons name="delete" style={css.actionButtonDel}/>
+									</TouchableWithoutFeedback>
 								</View>
 							</Row>
+							<TouchableWithoutFeedback hitSlop={{ top:20 }}>
+								<MaterialIcon name='more-horiz' size={15} style={{ color:'#9b9b9b', alignSelf:'flex-end', marginRight:10 }} />
+							</TouchableWithoutFeedback>
 						</Grid>
 					</View>
 			</View>
@@ -63,13 +53,13 @@ export default class Card extends Component {
 }
 
 const profileAvatarSize = 46;
-const horizontalOffset = 24;
+const horizontalOffset = 10;
 const verticalOffset = 9;
 
 const css = StyleSheet.create({
 	cardContainer: {
 		position: 'relative',
-		height:80,
+		height:60,
 		marginBottom: 16,
 		shadowRadius: 2,
 		shadowOffset: { width:0, height:2 },
@@ -78,7 +68,7 @@ const css = StyleSheet.create({
 		backgroundColor: 'white',
 		borderColor: 'rgba(184,184,184,0.5)',
 		borderWidth: 0.5,
-		borderRadius: 3,
+		borderRadius: 7,
 	},
 	cardBody: {
 		overflow: 'hidden',
@@ -94,20 +84,14 @@ const css = StyleSheet.create({
 		borderRadius: profileAvatarSize/2,
 	},
 	cardInfo: {
-		justifyContent: 'center'
+		justifyContent: 'flex-start',
+		marginTop:-12
 	},
 	primaryText: {
-		marginTop:9,
-		marginBottom: 8,
+		marginTop:8,
 		color: '#2e70be',
 		fontSize: 18,
 		fontWeight: '500',
-	},
-	secondaryText: {
-		color: '#4a4a4a',
-		fontSize: 12,
-		fontWeight: 'normal',
-		marginBottom:9
 	},
 	sayingSummary: {
 		marginTop: verticalOffset,
@@ -118,6 +102,9 @@ const css = StyleSheet.create({
 	},
 	actionButtonWrap: {
 		flex: 0,
+		flexDirection:'row',
+		marginRight:10,
+		marginLeft:20,
 		width: 60,
 		marginTop: -verticalOffset,
 		justifyContent: 'flex-end',
@@ -132,7 +119,6 @@ const css = StyleSheet.create({
 	},
 	actionButtonDel: {
 		paddingVertical: verticalOffset,
-		paddingRight: 10,
 		color: '#d0011b',
 		fontSize: 15,
 		//height: 18,
