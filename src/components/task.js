@@ -10,7 +10,6 @@ import{
 
 import {
     Container,
-    Card, CardItem,
     Body,Right,
     Header, Left,
     Drawer,
@@ -20,6 +19,8 @@ import {
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import Card from './card'
 
 export default class Task extends Component {
     render(){
@@ -36,23 +37,9 @@ export default class Task extends Component {
                         </Left>
                     </Header>
                 </Image>
-                <View style={{ height:90, backgroundColor:'white', paddingHorizontal:12, marginBottom:15 }}>
-                    <Card>
-                        <CardItem>
-                            <Body style={{ flexDirection:'column', alignItems:'center' }}>
-                                <Text style={{ fontSize:15, fontWeight:'500', color:'#2e70be' }}>
-                                    Research In Advertising
-                                </Text>
-                                <Text style={{ fontSize:12, color:'#4a4a4a', width:233 }}>
-                                    As soon as Computerized Tomography or
-                                    CT scans became accessible in the 1970s,
-                                </Text>
-                            </Body>
-                            <Right style={{ flexDirection:'row' }}>
-                                <MaterialCommunityIcons name='pencil' size={15} style={{ color:'#2e70be' }} />
-                            </Right>
-                        </CardItem>
-                    </Card>
+                <View style={{ backgroundColor:'white', paddingHorizontal:12, marginBottom:15 }}>
+                    <Card primaryText="Research In Advertising" secondaryText="As soon as Computerized Tomography or
+                            CT scans became accessible in the 1970s, " />
                 </View>
             </View>
         );
