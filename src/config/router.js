@@ -4,9 +4,13 @@ import { StackNavigator, DrawerNavigator } from 'react-navigation';
 import Login from '../components/login';
 import Add from '../components/add';
 import Register from '../components/register';
-import Task from '../components/task'
+import Task from '../components/task';
+import TaskDetail from '../components/taskdetail';
 
 export const LoginStack = StackNavigator({
+    TaskDetail:{
+        screen: TaskDetail
+    },
     Login:{
         screen: Login
     },
