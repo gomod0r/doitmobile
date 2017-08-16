@@ -8,15 +8,15 @@ import Task from '../components/task';
 import TaskDetail from '../components/taskdetail';
 
 export const LoginStack = StackNavigator({
-    TaskDetail:{
-        screen: TaskDetail
+    Task:{
+        screen: Task
     },
     Login:{
         screen: Login
     },
-    Task:{
-        screen: Task
-    }
+    TaskDetail:{
+        screen: TaskDetail
+    },
 },
 {
     headerMode: 'none'
