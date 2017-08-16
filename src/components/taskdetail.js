@@ -5,12 +5,14 @@ import {
     Text,
     StatusBar,
     TouchableHighlight,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    TextInput
 } from 'react-native';
 
 import {
     Header, Left,
-    Card
+    Card,
+    Button
 } from 'native-base';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -26,8 +28,18 @@ export default class TaskDetail extends Component {
                         <Icon name='arrow-back' size={20} style={{ color:'#7200da' }} />
                     </Left>
                 </Header>
-                <Text style={{ marginTop:18, marginLeft:16, color:'#fb684b', fontSize:30, fontWeight:'500' }}> Görev Adı </Text>
-                <View style={{ height:189, paddingHorizontal:16, marginTop:25 }}>
+                <View style={{ paddingLeft:16, marginTop:18, flexDirection:'row', alignItems:'center' }}>
+                    <View style={{ flexDirection:'column', flex:1 }}>
+                        <Text style={{ color:'#fb684b', fontSize:30, fontWeight:'500' }}> Görev Adı </Text>
+                        <View style={{ width:209, height:1, backgroundColor:'#fb684b', marginTop:10 }} />
+                    </View>
+                    <View style={{ flex:1 }}>
+                        <Button numberOfLines={3} style={{ borderRadius:4, borderWidth:1, borderColor:'#fb684b', width:32, height:32, backgroundColor:'white', alignSelf:'flex-end', marginRight:16 }}>
+                        </Button>
+                    </View>
+                </View>
+                <TextInput underlineColorAndroid='white' placeholder='Description' style={{ height:47, marginHorizontal:16, borderWidth:1, borderColor:'#f3f3f3', marginTop:16, borderRadius:3 }} />
+                <View style={{ height:189, paddingHorizontal:16, marginTop:20 }}>
                     <Card style={{ borderRadius:7 }}>
                         <View style={{ borderBottomWidth:1, borderBottomColor:'#d8d8d8', height:94, flexDirection:'row' }}>
                             <View style={{ flexDirection:'column', flex:1 }}>
@@ -59,8 +71,8 @@ export default class TaskDetail extends Component {
                         </View>
                     </Card>
                 </View>
-                <TouchableHighlight style={{ marginTop:40, width:30, height:30, borderRadius:15, alignSelf:'center', backgroundColor:'#7200da', alignItems:'center', justifyContent:'center' }}>
-                    <Icon name='add' style={{ color:'white' }} size={25} />
+                <TouchableHighlight style={{ marginTop:40, width:54, height:54, borderRadius:27, alignSelf:'center', backgroundColor:'#7200da', alignItems:'center', justifyContent:'center' }}>
+                    <Icon name='add' style={{ color:'white' }} size={30} />
                 </TouchableHighlight>
             </View>
         );
