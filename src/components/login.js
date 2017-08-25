@@ -6,7 +6,8 @@ import {
     Platform,
     StatusBar,
     TouchableHighlight,
-    AsyncStorage
+    AsyncStorage,
+    Image
 } from 'react-native';
 
 import {
@@ -78,15 +79,12 @@ export default class Login extends Component{
             <View style={{ backgroundColor:'white', flex:1,
                            alignItems:'center' }}>
                 <StatusBar backgroundColor='#7200da' />
-                <View>
-                    <Text style={{ fontFamily:'SFProDisplay', paddingTop:50,
-                                   fontSize:72, fontWeight:'900',
-                                   color:'#fb684b' }}>
-                        doit
-                    </Text>
+                <View style={{ marginTop:54 }}>
+                    <Image source={require('../img/logo.png')}
+                           style={{ width:112, height:87 }} />
                 </View>
                 <View>
-                    <Form style={{ marginTop:84 }}>
+                    <Form style={{ marginTop:80 }}>
 
                         <Item floatingLabel style={{marginLeft: 0,
                                                     borderWidth:.5, width:311,
@@ -128,14 +126,28 @@ export default class Login extends Component{
                             full
                             onPress={ this.onLoginPressed.bind(this) }
                             style={{ backgroundColor:'white',
-                                     borderRadius: 25, marginTop: 160,
+                                     borderRadius: 25, marginTop: 65,
                                      borderColor:'#7200da', borderWidth:1 }}>
                             <Text style={{ color:'#7200da', fontWeight: '600',
                                            fontSize: 15, }}>
                                 Giriş Yap
                             </Text>
                         </Button>
-
+                        <View style={{ flexDirection:'row',
+                                       alignSelf:'center' }}>
+                            <Text style={{ fontSize:14, fontWeight:'normal',
+                                           color:'#7200da', marginTop:15 }}>
+                                Hala hesabın yoksa
+                            </Text>
+                            <Text
+                            onPress={
+                                ()=>this.props.navigation.navigate('Register')}
+                            style={{ fontSize:14, fontWeight:'bold',
+                                     color:'#fb684b', alignSelf:'flex-end',
+                                     marginLeft:5 }}>
+                                Kayıt ol
+                            </Text>
+                        </View>
                     </Form>
                 </View>
             </View>

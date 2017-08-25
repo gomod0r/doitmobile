@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    StatusBar
+    StatusBar,
+    Image
 } from 'react-native';
 
 import {
@@ -21,15 +22,12 @@ export default class Register extends Component{
             <View style={{ backgroundColor:'white', flex:1,
                            alignItems:'center' }}>
                 <StatusBar backgroundColor='#7200da' />
-                <View>
-                    <Text style={{ fontFamily:'SFProDisplay', paddingTop:50,
-                                   fontSize:72, fontWeight:'900',
-                                   color:'#fb684b' }}>
-                        doit
-                    </Text>
+                <View style={{ marginTop:54 }}>
+                    <Image source={require('../img/logo.png')}
+                           style={{ width:112, height:87 }} />
                 </View>
                 <View>
-                    <Form style={{ marginTop:59 }}>
+                    <Form style={{ marginTop:54 }}>
                         <Item floatingLabel
                               style={{ marginTop:0, marginLeft: 0,
                                        borderWidth:.5, width:311,
@@ -82,11 +80,11 @@ export default class Register extends Component{
                         </Item>
                         <Button
                             full
-                            style={{ backgroundColor:'#7200da', 
+                            style={{ backgroundColor:'white',
                                      borderRadius: 25, marginTop: 65,
                                      borderColor:'#7200da', borderWidth:1 }}>
-                            <Text style={{ color:'white', fontWeight: '600',
-                                  fontSize: 15 }}>
+                            <Text style={{ color:'#7200da',
+                                  fontSize: 20 }}>
                                 Tamamla
                             </Text>
                         </Button>

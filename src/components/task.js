@@ -6,7 +6,9 @@ import{
     Image,
     StatusBar,
     TouchableHighlight,
-    ListView
+    ListView,
+    TextInput,
+    TouchableWithoutFeedback
 } from 'react-native';
 
 import {
@@ -25,8 +27,6 @@ import Api from '../config/api';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons
                     from 'react-native-vector-icons/MaterialCommunityIcons';
-
-import Card from './card'
 
 var taskArray = [];
 
@@ -60,8 +60,35 @@ export default class Task extends Component {
 
     _renderRow(row) {
     	return (
-            <View style={{ paddingHorizontal:16 }}>
-                <Card primaryText={ row.title }  />
+            <View>
+                <View style={{ marginBottom:10, flex:1, paddingHorizontal:16,
+                               flexDirection:'row', alignItems:'center',
+                               justifyContent:'center', marginTop:9 }}>
+                    <View>
+                        <Button style={{ borderRadius:4, borderWidth:1,
+                                 borderColor:'#fb684b', width:32,
+                                 height:32, backgroundColor:'white',
+                                 marginRight:16 }}>
+                        </Button>
+                    </View>
+                    <View style={{ justifyContent:'flex-start' }}>
+                        <Text onPress={
+                            ()=>this.props.navigation.navigate('TaskDetail')}
+                            style={{ fontSize:20, fontWeight:'500',
+                                     color:'#7200da' }}>
+                            {row.title}
+                        </Text>
+                    </View>
+                    <View style={{ flexDirection:'column',
+                                   alignItems:'flex-end',
+                                   justifyContent:'center', flex:1 }}>
+                        <Text style={{ fontSize:20, fontWeight:'100',
+                                       color:'#7200da' }} >20</Text>
+                        <Text style={{ fontSize:20, fontWeight:'100',
+                                       color:'#7200da' }} >Agu</Text>
+                    </View>
+                </View>
+                <View style={{ height:1, flex:1, backgroundColor:'#f6ebff' }}/>
             </View>
     	)
     }
@@ -79,6 +106,9 @@ export default class Task extends Component {
                             backgroundColor="rgba(0, 0, 0, 0.20)" />
                         <Left style={{ marginTop:30 }}>
                             <TouchableHighlight
+                                onPress={
+                                ()=>{
+                                this.props.navigation.navigate('DrawerOpen');}}
                                 style={{ backgroundColor:'transparent',
                                          borderWidth:0 }}>
                                 <Icon
@@ -120,7 +150,9 @@ export default class Task extends Component {
                                              backgroundColor:'#7200da',
                                              width:54, height:54,
                                              alignItems:'center',
-                                             justifyContent:'center' }}>
+                                             justifyContent:'center' }}
+                                    onPress={
+                                    ()=>this.props.navigation.navigate('Add')}>
                     <Icon name='add' style={{ color:'white', fontSize:30 }} />
                 </TouchableHighlight>
                 <Content style={{ backgroundColor:'white',

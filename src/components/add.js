@@ -23,7 +23,7 @@ export default class TaskDetail extends Component {
     render(){
         const {goBack} = this.props.navigation;
         return(
-            <View style={{ flex:1, backgroundColor:'white', marginTop:20 }}>
+            <View style={{ flex:1, backgroundColor:'white',marginTop:20 }}>
                 <Header noShadow style={{ backgroundColor:'white' }}>
                     <StatusBar backgroundColor="#7200da" />
                     <Left>
