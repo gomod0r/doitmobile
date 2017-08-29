@@ -10,6 +10,7 @@ import ChangePassword from '../components/changepassword';
 import UserInfo from '../components/userinfo';
 import Drawer from '../components/drawer';
 import Add from '../components/add';
+import EmptyTask from '../components/emptytask'
 
 export const LoginStack = StackNavigator({
     Login:{
@@ -24,8 +25,8 @@ export const LoginStack = StackNavigator({
 });
 
 export const TaskStack = StackNavigator({
-    Task:{
-        screen: Task
+    EmptyTask:{
+        screen: EmptyTask
     },
     Add:{
         screen: Add
