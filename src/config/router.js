@@ -25,7 +25,7 @@ export const LoginStack = StackNavigator({
 });
 
 export const TaskStack = StackNavigator({
-    EmptyTask:{
+    Task:{
         screen: EmptyTask
     },
     Add:{
@@ -55,9 +55,6 @@ export const DrawerMenu = DrawerNavigator({
 );
 
 export const Main = StackNavigator({
-    Login:{
-        screen:LoginStack
-    },
     DrawerMenu:{
         screen: DrawerMenu
     },

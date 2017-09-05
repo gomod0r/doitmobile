@@ -55,7 +55,7 @@ export default class Login extends Component{
 				},
 				body: JSON.stringify({
 					  email: this.state.email,
-			          password: this.state.password,
+			      password: this.state.password,
 				})
 			});
 			if(response.status >= 200 && response.status < 300) {

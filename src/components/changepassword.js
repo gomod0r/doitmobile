@@ -4,7 +4,8 @@ import {
     View,
     StatusBar,
     Image,
-    Text
+    Text,
+		Platform
 } from 'react-native';
 
 import {
@@ -24,7 +25,8 @@ export default class ChangePassword extends Component{
         const {goBack} = this.props.navigation;
         return(
             <View style={{ backgroundColor:'white', flex:1 }}>
-                <Header noShadow style={{ backgroundColor:'white' }}>
+                <Header noShadow style={{ backgroundColor:'white',
+								                          borderBottomColor:'white' }}>
                     <StatusBar backgroundColor="#7200da" />
                     <Left>
                         <Icon onPress={() => goBack()}
@@ -33,7 +35,8 @@ export default class ChangePassword extends Component{
                               style={{ color:'#7200da' }}/>
                     </Left>
                     <Body>
-                        <Image style={{ alignSelf:'flex-end' }} s
+                        <Image style={{ alignSelf:(Platform.OS === 'ios') ?
+												                'center' : 'flex-end' }}
                                source={require('../img/doit.png')} />
                     </Body>
                     <Right>

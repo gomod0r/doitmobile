@@ -8,7 +8,8 @@ import{
     TouchableHighlight,
     ListView,
     TextInput,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+		Platform
 } from 'react-native';
 
 import {
@@ -35,12 +36,14 @@ export default class EmptyTask extends Component{
                 <Image source={require('../img/header.jpg')}
                        style={{ resizeMode: 'cover', height:230 }}>
                     <Header noShadow style={{ backgroundColor:'transparent',
-                                              alignItems:'stretch' }}>
+                                              alignItems:'stretch',
+																						  borderBottomColor:'transparent' }}>
                         <StatusBar
                             translucent
                             animated
                             backgroundColor="rgba(0, 0, 0, 0.20)" />
-                        <Left style={{ marginTop:30 }}>
+                        <Left style={{ marginTop:(Platform.OS === 'ios') ?
+																				0 : 30 }}>
                             <TouchableHighlight
                                 onPress={
                                 ()=>{
