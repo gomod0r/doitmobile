@@ -86,10 +86,10 @@ export default class Login extends Component{
                 <View>
                     <Form style={{ marginTop:80 }}>
 
-                        <Item floatingLabel style={{marginLeft: 0,
-                                                    borderWidth:.5, width:311,
-                                                    paddingHorizontal:32,
-                                                    borderColor:'#7200da'}}>
+                        <Item floatingLabel style={{ marginLeft: 0,
+                                                     borderWidth:.5, width:311,
+                                                     paddingHorizontal:32,
+                                                     borderColor:'#7200da'}}>
                             <Label style={{ color:'#9b9b9b',
                                             alignSelf:'center', fontSize:16 }}>
                                 E-Posta Adresi
