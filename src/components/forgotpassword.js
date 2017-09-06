@@ -22,9 +22,9 @@ export default class ForgotPassword extends Component {
 	render(){
 		return(
 			<View style={{ flex:1, backgroundColor:'white' }}>
-				<Header style={{ borderBottomColor:'white',
+				<Header noShadow style={{ borderBottomColor:'white',
 			 					 backgroundColor:'white'}}>
-					<StatusBar backgroundColor={'white'} />
+					<StatusBar backgroundColor={'#7200da'} />
 					<Left>
 						<Icon onPress={() => goBack()}
 							  name='keyboard-backspace' size={30}
