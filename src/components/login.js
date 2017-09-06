@@ -116,7 +116,11 @@ export default class Login extends Component{
 
                         <Button transparent style={{ paddingHorizontal: 0,
                                                      alignSelf: 'flex-end',
-                                                     marginTop: 10 }}>
+                                                     marginTop: 10 }}
+								onPress={
+								()=>
+								this.props.navigation.navigate('ForgotPassword')
+						}>
                             <Text
                                 style={{ color:'#9b9b9b', fontSize:13 }}>
                                 Şifremi unuttum

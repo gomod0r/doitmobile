@@ -10,7 +10,8 @@ import ChangePassword from '../components/changepassword';
 import UserInfo from '../components/userinfo';
 import Drawer from '../components/drawer';
 import Add from '../components/add';
-import EmptyTask from '../components/emptytask'
+import EmptyTask from '../components/emptytask';
+import ForgotPassword from '../components/forgotpassword';
 
 export const LoginStack = StackNavigator({
     Login:{
@@ -18,7 +19,10 @@ export const LoginStack = StackNavigator({
     },
     Register:{
         screen: Register
-    }
+    },
+	ForgotPassword:{
+		screen: ForgotPassword
+	}
 },
 {
     headerMode: 'none'
