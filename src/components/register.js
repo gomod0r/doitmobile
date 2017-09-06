@@ -13,25 +13,36 @@ import {
     Item,
     Form,
     Label,
-    Input
+    Input,
+	Header, Left
 } from 'native-base';
+
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 export default class Register extends Component{
     render(){
+		const {goBack} = this.props.navigation;
         return(
-            <View style={{ backgroundColor:'white', flex:1,
-                           alignItems:'center' }}>
-                <StatusBar backgroundColor='#7200da' />
-                <View style={{ marginTop:54 }}>
+            <View style={{ backgroundColor:'white', flex:1 }}>
+				<Header noShadow style={{ borderBottomColor:'white',
+   			 					          backgroundColor:'white'}}>
+   					<StatusBar backgroundColor={'#7200da'} />
+   					<Left>
+   						<MaterialIcon onPress={() => goBack()}
+   							  		  name='keyboard-backspace' size={30}
+   							  		  style={{ color:'#7200da' }} />
+   					</Left>
+   				</Header>
+                <View style={{ alignItems:'center' }}>
                     <Image source={require('../img/logo.png')}
                            style={{ width:112, height:87 }} />
                 </View>
                 <View>
-                    <Form style={{ marginTop:54 }}>
+                    <Form style={{ marginTop:54, alignItems:'center',
+					               paddingHorizontal:32, }}>
                         <Item floatingLabel
                               style={{ marginTop:0, marginLeft: 0,
                                        borderWidth:.5, width:311,
-                                       paddingHorizontal:32,
                                        borderColor:'#7200da'}}>
                             <Label style={{ color:'#9b9b9b', alignSelf:'center',
                                             fontSize:16 }}>

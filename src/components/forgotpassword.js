@@ -20,6 +20,7 @@ import MaterialCommunityIcons
 
 export default class ForgotPassword extends Component {
 	render(){
+		const {goBack} = this.props.navigation;
 		return(
 			<View style={{ flex:1, backgroundColor:'white' }}>
 				<Header noShadow style={{ borderBottomColor:'white',
