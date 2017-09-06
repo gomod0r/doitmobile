@@ -22,7 +22,7 @@ export default class Settings extends Component{
         return(
             <View style={{ backgroundColor:'white', flex:1 }}>
                 <Header noShadow style={{ backgroundColor:'white',
-							 														borderBottomColor:'white'}}>
+							 			  borderBottomColor:'white'}}>
                     <StatusBar backgroundColor="#7200da" />
                     <Left>
                         <Icon onPress={() => goBack()}
@@ -31,7 +31,7 @@ export default class Settings extends Component{
                     </Left>
                     <Body>
                         <Image style={{ alignSelf:(Platform.OS === 'ios') ?
-												                'center' : 'flex-end' }}
+									    'center' : 'flex-end' }}
                                source={require('../img/doit.png')} />
                     </Body>
                     <Right>

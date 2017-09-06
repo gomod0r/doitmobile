@@ -55,6 +55,9 @@ export const DrawerMenu = DrawerNavigator({
 );
 
 export const Main = StackNavigator({
+    Login:{
+        screen: LoginStack
+    },
     DrawerMenu:{
         screen: DrawerMenu
     },

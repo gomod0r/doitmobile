@@ -37,7 +37,8 @@ export default class EmptyTask extends Component{
                        style={{ resizeMode: 'cover', height:230 }}>
                     <Header noShadow style={{ backgroundColor:'transparent',
                                               alignItems:'stretch',
-																						  borderBottomColor:'transparent' }}>
+											  borderBottomColor:'transparent'
+                                           }}>
                         <StatusBar
                             translucent
                             animated
