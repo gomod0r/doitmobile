@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Main, TaskStack, DrawerMenu } from './config/router';
+
+import { Main } from './config/router';
 
 export default class App extends Component {
-    render() {
+    render(){
         return <Main />;
     }
 }

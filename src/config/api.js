@@ -40,6 +40,7 @@ export default class Api {
 
     static async getHeaders(){
         let token = await this.getToken();
+        console.log('token geldi mı ?' + token);
         return { 'Authorization': `Token ${token}` }
     }
 

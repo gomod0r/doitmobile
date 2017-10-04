@@ -3,10 +3,8 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    Platform,
     StatusBar,
     TouchableHighlight,
-    AsyncStorage,
     Image
 } from 'react-native';
 
@@ -16,17 +14,14 @@ import {
     Form, Item,
     Label,
     Input,
-    Button,
-    Content,
-    Fab,
-    Footer, FooterTab
+    Button
 } from 'native-base';
+
+import Api from '../config/api';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons
                     from 'react-native-vector-icons/MaterialCommunityIcons';
-
-import Api from '../config/api'
 
 export default class Login extends Component{
 
@@ -55,7 +50,7 @@ export default class Login extends Component{
 				},
 				body: JSON.stringify({
 					  email: this.state.email,
-			      password: this.state.password,
+			          password: this.state.password,
 				})
 			});
 			if(response.status >= 200 && response.status < 300) {
@@ -75,7 +70,6 @@ export default class Login extends Component{
 	}
     render(){
         return(
-
             <View style={{ backgroundColor:'white', flex:1,
                            alignItems:'center' }}>
                 <StatusBar backgroundColor='#7200da' />
@@ -85,11 +79,10 @@ export default class Login extends Component{
                 </View>
                 <View>
                     <Form style={{ marginTop:80 }}>
-
-                        <Item floatingLabel style={{ marginLeft: 0,
-                                                     borderWidth:.5, width:311,
-                                                     paddingHorizontal:32,
-                                                     borderColor:'#7200da'}}>
+                        <Item floatingLabel style={{marginLeft: 0,
+                                                    borderWidth:.5, width:311,
+                                                    paddingHorizontal:32,
+                                                    borderColor:'#7200da'}}>
                             <Label style={{ color:'#9b9b9b',
                                             alignSelf:'center', fontSize:16 }}>
                                 E-Posta Adresi
@@ -98,7 +91,6 @@ export default class Login extends Component{
                                             this.setState({ email: text }) }
                                    keyboardType={'email-address'}/>
                         </Item>
-
                         <Item floatingLabel style={{marginLeft: 0,
                                                     borderWidth:.5,
                                                     marginTop: 12,
@@ -112,23 +104,20 @@ export default class Login extends Component{
                                             this.setState({ password: text })}
                                    secureTextEntry={true}/>
                         </Item>
-
-
                         <Button transparent style={{ paddingHorizontal: 0,
                                                      alignSelf: 'flex-end',
                                                      marginTop: 10 }}
-								onPress={
-								()=>
-								this.props.navigation.navigate('ForgotPassword')
-						}>
+                                onPress={
+							        ()=>
+							this.props.navigation.navigate('ForgotPassword')}>
                             <Text
                                 style={{ color:'#9b9b9b', fontSize:13 }}>
                                 Şifremi unuttum
                             </Text>
                         </Button>
                         <Button
-                            full
                             onPress={ this.onLoginPressed.bind(this) }
+                            full
                             style={{ backgroundColor:'white',
                                      borderRadius: 25, marginTop: 65,
                                      borderColor:'#7200da', borderWidth:1 }}>
@@ -144,11 +133,11 @@ export default class Login extends Component{
                                 Hala hesabın yoksa
                             </Text>
                             <Text
-                            onPress={
+                                onPress={
                                 ()=>this.props.navigation.navigate('Register')}
-                            style={{ fontSize:14, fontWeight:'bold',
-                                     color:'#fb684b', alignSelf:'flex-end',
-                                     marginLeft:5 }}>
+                                style={{ fontSize:14, fontWeight:'bold',
+                                           color:'#fb684b', marginLeft:3,
+                                           alignSelf:'flex-end' }}>
                                 Kayıt ol
                             </Text>
                         </View>

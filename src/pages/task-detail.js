@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import {
-    Header, Left,
+    Header, Left, Body, Right,
     Card,
     Button
 } from 'native-base';
@@ -23,7 +23,7 @@ export default class TaskDetail extends Component {
     render(){
         const {goBack} = this.props.navigation;
         return(
-            <View style={{ flex:1, backgroundColor:'white',marginTop:20 }}>
+            <View style={{ flex:1, backgroundColor:'white' }}>
                 <Header noShadow style={{ backgroundColor:'white' }}>
                     <StatusBar backgroundColor="#7200da" />
                     <Left>
@@ -31,6 +31,8 @@ export default class TaskDetail extends Component {
                               name='keyboard-backspace' size={30}
                               style={{ color:'#7200da' }} />
                     </Left>
+                    <Body></Body>
+                    <Right></Right>
                 </Header>
                 <View style={{ paddingLeft:16, marginTop:18,
                                flexDirection:'row', alignItems:'center' }}>

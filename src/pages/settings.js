@@ -42,7 +42,7 @@ export default class Settings extends Component{
                 </Header>
                 <View style={{ flex:1 }}>
                     <View style={{ height:56, justifyContent:'center',
-                                   marginTop:30, borderBottomWidth:2,
+                                   borderBottomWidth:2,
                                    borderBottomColor:'#f7f7f7' }}>
                         <Text
                             onPress={() =>

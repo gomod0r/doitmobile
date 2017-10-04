@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import {
-	Header, Left,
+	Header, Left, Body, Right,
 	Form, Item, Label, Input,
 	Button
 } from 'native-base';
@@ -31,6 +31,8 @@ export default class ForgotPassword extends Component {
 							  name='keyboard-backspace' size={30}
 							  style={{ color:'#7200da' }} />
 					</Left>
+                    <Body></Body>
+                    <Right></Right>
 				</Header>
 				<View style={{ alignItems:'center' }}>
                     <Image source={require('../img/logo.png')}

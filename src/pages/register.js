@@ -14,12 +14,75 @@ import {
     Form,
     Label,
     Input,
-	Header, Left
+	Header, Left, Body, Right
 } from 'native-base';
+
+import Api from '../config/api';
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 export default class Register extends Component{
+
+    constructor(){
+        super();
+
+        this.state = {
+            email: "",
+            firstName: "",
+            lastName:"",
+            password: "",
+            password_confirmation: "",
+            errors: [],
+            showProgress: false,
+        }
+    }
+
+    redirect(routeName){
+        this.props.navigation.navigate(routeName);
+    }
+
+    async onRegisterPressed() {
+        this.setState({showProgress: true})
+        try {
+            let response=await fetch('http://doit.unicrow.com/api/v1/users/', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: this.state.email,
+                    first_name: this.state.firstName,
+                    last_name:this.state.lastName,
+                    password: this.state.password
+                })
+            });
+            let res = await response.text();
+            if (response.status >= 200 && response.status < 300) {
+                let accessToken = res;
+                console.log(accessToken);
+                Api.storeToken(accessToken);
+                this.redirect('Login');
+            } else {
+                let error = res;
+                throw error;
+            }
+        } catch(errors) {
+            let formErrors = JSON.parse(errors);
+            let errorsArray = [];
+            for(var key in formErrors) {
+                if(formErrors[key].length > 1) {
+                    formErrors[key].map(error =>
+                        errorsArray.push(`${key} ${error}`));
+                } else {
+                    errorsArray.push(`${key} ${formErrors[key]}`);
+                }
+            }
+            this.setState({errors: errorsArray})
+            this.setState({showProgress: false});
+        }
+    }
+
     render(){
 		const {goBack} = this.props.navigation;
         return(
@@ -32,6 +95,8 @@ export default class Register extends Component{
    							  		  name='keyboard-backspace' size={30}
    							  		  style={{ color:'#7200da' }} />
    					</Left>
+                    <Body></Body>
+                    <Right></Right>
    				</Header>
                 <View style={{ alignItems:'center' }}>
                     <Image source={require('../img/logo.png')}
@@ -48,7 +113,8 @@ export default class Register extends Component{
                                             fontSize:16 }}>
                                 İsim
                             </Label>
-                            <Input keyboardType={'email-address'}/>
+                            <Input keyboardType={'email-address'}
+                   onChangeText={ (text)=> this.setState({firstName: text}) }/>
                         </Item>
 
                         <Item floatingLabel
@@ -58,7 +124,8 @@ export default class Register extends Component{
                                             fontSize:16 }}>
                                 Soyisim
                             </Label>
-                            <Input secureTextEntry={true}/>
+                            <Input
+                    onChangeText={ (text)=> this.setState({lastName: text}) }/>
                         </Item>
                         <Item floatingLabel
                               style={{ marginLeft: 0, borderWidth:.5, width:311,
@@ -68,7 +135,8 @@ export default class Register extends Component{
                                             fontSize:16 }}>
                                 E-Posta Adresi
                             </Label>
-                            <Input keyboardType={'email-address'}/>
+                            <Input keyboardType={'email-address'}
+                       onChangeText={ (text)=> this.setState({email: text}) }/>
                         </Item>
 
                         <Item floatingLabel
@@ -78,7 +146,8 @@ export default class Register extends Component{
                                             fontSize:16 }}>
                                 Şifre
                             </Label>
-                            <Input secureTextEntry={true}/>
+                            <Input secureTextEntry={true}
+                    onChangeText={ (text)=> this.setState({password: text}) }/>
                         </Item>
                         <Item floatingLabel
                               style={{ marginLeft: 0, borderWidth:.5,
@@ -87,9 +156,11 @@ export default class Register extends Component{
                                             fontSize:16 }}>
                                 Şifre Tekrarı
                             </Label>
-                            <Input secureTextEntry={true}/>
+                            <Input secureTextEntry={true}
+       onChangeText={ (text)=> this.setState({password_confirmation: text}) }/>
                         </Item>
                         <Button
+                            onPress={ this.onRegisterPressed.bind(this) }
                             full
                             style={{ backgroundColor:'white',
                                      borderRadius: 25, marginTop: 65,

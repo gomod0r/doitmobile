@@ -1,17 +1,17 @@
 import React from 'react';
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
 
-import Login from '../components/login';
-import Register from '../components/register';
-import Task from '../components/task';
-import TaskDetail from '../components/taskdetail';
-import Settings from '../components/settings';
-import ChangePassword from '../components/changepassword';
-import UserInfo from '../components/userinfo';
-import Drawer from '../components/drawer';
-import Add from '../components/add';
-import EmptyTask from '../components/emptytask';
-import ForgotPassword from '../components/forgotpassword';
+import Login from '../pages/login';
+import Register from '../pages/register';
+import ForgotPassword from '../pages/forgot-password';
+import TaskList from '../pages/task-list';
+import Drawer from '../pages/drawer';
+import Add from '../pages/add';
+import TaskDetail from '../pages/task-detail';
+import Settings from '../pages/settings';
+import UserInfo from '../pages/user-info';
+import ChangePassword from '../pages/change-password';
+import EmptyTask from '../pages/empty-task';
 
 export const LoginStack = StackNavigator({
     Login:{
@@ -30,7 +30,7 @@ export const LoginStack = StackNavigator({
 
 export const TaskStack = StackNavigator({
     Task:{
-        screen: EmptyTask
+        screen: TaskList
     },
     Add:{
         screen: Add

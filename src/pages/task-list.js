@@ -59,38 +59,60 @@ export default class Task extends Component {
     }
 
     _renderRow(row) {
-    	return (
-            <View>
-                <View style={{ marginBottom:10, flex:1, paddingHorizontal:16,
-                               flexDirection:'row', alignItems:'center',
-                               justifyContent:'center', marginTop:9 }}>
-                    <View>
-                        <Button style={{ borderRadius:4, borderWidth:1,
-                                 borderColor:'#fb684b', width:32,
-                                 height:32, backgroundColor:'white',
-                                 marginRight:16 }}>
-                        </Button>
-                    </View>
-                    <View style={{ justifyContent:'flex-start' }}>
-                        <Text onPress={
-                            ()=>this.props.navigation.navigate('TaskDetail')}
-                            style={{ fontSize:20, fontWeight:'500',
-                                     color:'#7200da' }}>
-                            {row.title}
+        if (this.state.dataSource.getRowCount() === 0) {
+            return(
+                <View style={{ flex:1 }}>
+                    <View style={{ backgroundColor:'white', alignItems:'center',
+                                   marginTop:30 }}>
+                        <Image source={require('../img/school-material.png')} />
+                        <Text style={{ fontSize:24, fontWeight:'500',
+                                       color:'#4a4a4a' }}>
+                            Yapılacaklar Listen Boş
+                        </Text>
+                        <Text style={{ fontSize:18, color:'#4a4a4a',
+                                       marginTop:15 }}>
+                            Neden hemen bir tane eklemiyorsun?
                         </Text>
                     </View>
-                    <View style={{ flexDirection:'column',
-                                   alignItems:'flex-end',
-                                   justifyContent:'center', flex:1 }}>
-                        <Text style={{ fontSize:20, fontWeight:'100',
-                                       color:'#7200da' }} >20</Text>
-                        <Text style={{ fontSize:20, fontWeight:'100',
-                                       color:'#7200da' }} >Agu</Text>
-                    </View>
                 </View>
-                <View style={{ height:1, flex:1, backgroundColor:'#f6ebff' }}/>
-            </View>
-    	)
+            )
+        } else {
+        	return (
+                <View>
+                    <View style={{ marginBottom:10, flex:1,
+                                   paddingHorizontal:16,
+                                   flexDirection:'row', alignItems:'center',
+                                   justifyContent:'center', marginTop:9 }}>
+                        <View>
+                            <Button style={{ borderRadius:4, borderWidth:1,
+                                             borderColor:'#fb684b', width:32,
+                                             height:32, backgroundColor:'white',
+                                             marginRight:16 }}>
+                            </Button>
+                        </View>
+                        <View style={{ justifyContent:'flex-start' }}>
+                            <Text onPress={
+                                ()=>
+                                this.props.navigation.navigate('TaskDetail')}
+                                style={{ fontSize:20, fontWeight:'500',
+                                         color:'#7200da' }}>
+                                {row.title}
+                            </Text>
+                        </View>
+                        <View style={{ flexDirection:'column',
+                                       alignItems:'flex-end',
+                                       justifyContent:'center', flex:1 }}>
+                            <Text style={{ fontSize:20, fontWeight:'100',
+                                           color:'#7200da' }} >20</Text>
+                            <Text style={{ fontSize:20, fontWeight:'100',
+                                           color:'#7200da' }} >Agu</Text>
+                        </View>
+                    </View>
+                    <View style={{ height:1, flex:1,
+                                   backgroundColor:'#f6ebff' }}/>
+                </View>
+        	)
+        }
     }
 
     render(){
@@ -116,30 +138,26 @@ export default class Task extends Component {
                                     style={{ fontSize:30, color:'white' }} />
                             </TouchableHighlight>
                         </Left>
+                        <Body></Body>
+                        <Right></Right>
                     </Header>
                     <View style={{ flexGrow:1, alignItems: 'flex-end',
                                    flexDirection:'row', marginLeft:16 }}>
                         <View style={{ marginBottom:16 }}>
-                            <View style={{ flexDirection:'row',
-                                           alignItems:'center' }}>
-                                <Icon name='keyboard-arrow-left'
-                                      size={22} style={{ color:'white' }} />
-                                <Text style={{ marginHorizontal:11, fontSize:12,
-                                               fontWeight:'300', color:'#ffffff'
-                                            }}>
-                                    6 Ağustos
-                                </Text>
-                                <Icon name='keyboard-arrow-right'
-                                      size={22} style={{ color:'white' }} />
-                            </View>
                             <Text style={{ color:'white', fontSize:30,
                                            fontWeight:'500' }}>
                                 Bugün
                             </Text>
-                            <Text style={{ fontSize:18, fontWeight:'300',
-                                           color:'white' }}>
-                                7 Ağustos 2017
-                            </Text>
+                            <View style={{ flexDirection:'row',
+                                           alignItems:'center' }}>
+                                <Text style={{ fontSize:18, fontWeight:'300',
+                                               color:'white' }}>
+                                    7 Ağustos 2017
+                                </Text>
+                                <Icon name='keyboard-arrow-down' size={20}
+                                      style={{ color:'white',
+                                               marginLeft:5 }} />
+                            </View>
                         </View>
                     </View>
                 </Image>

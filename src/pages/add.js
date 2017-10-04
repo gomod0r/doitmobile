@@ -6,11 +6,12 @@ import {
     StatusBar,
     TouchableHighlight,
     TouchableWithoutFeedback,
-    TextInput
+    TextInput,
+	Platform
 } from 'react-native';
 
 import {
-    Header, Left,
+    Header, Left, Body, Right,
     Card,
     Button
 } from 'native-base';
@@ -23,21 +24,26 @@ export default class TaskDetail extends Component {
     render(){
         const {goBack} = this.props.navigation;
         return(
-            <View style={{ flex:1, backgroundColor:'white', marginTop:20 }}>
-                <Header noShadow style={{ backgroundColor:'white' }}>
+            <View style={{ flex:1, backgroundColor:'white',
+			                       marginTop:(Platform.OS === 'ios') ?
+							       		0 : 20 }}>
+                <Header noShadow style={{ backgroundColor:'white',
+			      						  borderBottomColor:'white'}}>
                     <StatusBar backgroundColor="#7200da" />
                     <Left>
                         <Icon onPress={() => goBack()}
                               name='keyboard-backspace' size={30}
                               style={{ color:'#7200da' }} />
                     </Left>
+                    <Body></Body>
+                    <Right></Right>
                 </Header>
                 <View style={{ paddingLeft:16, marginTop:18,
                                flexDirection:'row', alignItems:'center' }}>
                     <View style={{ flexDirection:'column', flex:1 }}>
                         <Text style={{ color:'#fb684b', fontSize:30,
                                        fontWeight:'500' }}> Görev Adı </Text>
-                        <View style={{ width:209, height:1,
+                        <View style={{ height:1,
                                        backgroundColor:'#fb684b',
                                        marginTop:10 }} />
                     </View>
